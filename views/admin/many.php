@@ -28,13 +28,3 @@ use yii\base\DynamicModel;
     <?php ActiveForm::end(); ?>
 
 </div>
-<?php
-$studyId=1;
-$model = \app\models\Choices::find()->where(['study_id' => $studyId, 'result' => 0])->asArray()->all();
-echo'<pre>';
-print_r($model);
-echo'</pre>';
-
-
-
-?>
