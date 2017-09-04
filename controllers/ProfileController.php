@@ -78,8 +78,10 @@ class ProfileController extends Controller
      */
     public function actionView($id)
     {
+        $modelScore = Score::findOne(['user_id' => $id]);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'modelScore' => $modelScore,
         ]);
     }
 

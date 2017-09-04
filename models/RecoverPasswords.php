@@ -28,9 +28,8 @@ class RecoverPasswords extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'token', 'date'], 'required'],
-            [['user_id', 'used'], 'integer'],
-            [['date'], 'safe'],
+            [['user_id', 'token'], 'required'],
+            [['user_id'], 'integer'],
             [['token'], 'string', 'max' => 50],
         ];
     }
@@ -43,8 +42,6 @@ class RecoverPasswords extends \yii\db\ActiveRecord
         return [
             'user_id' => 'User ID',
             'token' => 'Token',
-            'date' => 'Date',
-            'used' => 'Used',
         ];
     }
 
