@@ -34,5 +34,3 @@ use yii\widgets\ActiveForm;
         <?php ActiveForm::end(); ?>
 
     </div>
-<?php
-//echo Yii::$app->getSecurity()->generateRandomString();
