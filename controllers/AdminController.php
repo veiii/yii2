@@ -159,24 +159,33 @@ class AdminController extends Controller
         ]);
         $model->addRule(['howManyPoints','studyId'], 'required');
 
-        if($model->load(Yii::$app->request->post()))
+        if($model->load(Yii::$app->request->post()) && $model->validate())
         {
-            //tablica study_id => choices_id where status=0
-            $table = \app\models\Choices::find()->where(['study_id' => $model->studyId, 'result' => 0])->asArray()->all();
-            foreach($table as $tab){
-                if($tab['points']>=$model->howManyPoints){
-                    $this->actionAccept($tab['choices_id']);
-                } else {
-                    $this->actionReject($tab['choices_id']);
-                }
-            }
-
+            //logika przeniesiona do metod
+           $choicesInProgress = $this->getNotAcceptedChoices($model->studyId);
+           $this->decideResult($choicesInProgress, $model->howManyPoints);
 
         } else {
             return $this->render('many', array('model'=>$model));
-            //die("cos niezadziałało");
+
         }
     }
 
+    public function getNotAcceptedChoices($studyId)
+    {
+        $table = \app\models\Choices::find()->where(['study_id' => $studyId, 'result' => 0])->asArray()->all();
+        return $table;
+    }
+
+    public function decideResult($choicesInProgress, $pointLine)
+    {
+        foreach($choicesInProgress as $tab){
+            if($tab['points']>=$pointLine){
+                $this->actionAccept($tab['choices_id']);
+            } else {
+                $this->actionReject($tab['choices_id']);
+            }
+        }
+    }
 
 }
