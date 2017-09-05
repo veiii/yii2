@@ -173,7 +173,7 @@ class AdminController extends Controller
 
     public function getNotAcceptedChoices($studyId)
     {
-        $table = \app\models\Choices::find()->where(['study_id' => $studyId, 'result' => 0])->asArray()->all();
+        $table = Choices::find()->where(['study_id' => $studyId, 'result' => 0])->asArray()->all();
         return $table;
     }
 
