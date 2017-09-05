@@ -1,3 +1,7 @@
+Project created for education purpose.
+
+It's recruitment system in university.
+
 Yii 2 Basic Project Template
 ============================
 
