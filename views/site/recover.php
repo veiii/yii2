@@ -15,15 +15,16 @@ use yii\widgets\ActiveForm;
 } else {
     $token='';
 }
+print_r(Yii::$app->request->get('token'));
 ?>
     <div class="form">
 
         <?php $form = ActiveForm::begin(); ?>
         <?= Html::encode("Write new password");  ?>
 
-        <?= $form->field($model, 'token')->textInput() ?>
+        <?= $form->field($model, 'newpassword')->passwordInput() ?>
 
-        <?= $form->field($model, 'newpassword')->textInput() ?>
+        <?= $form->field($model, 'newpassword2')->passwordInput() ?>
 
 
 

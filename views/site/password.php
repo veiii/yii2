@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\captcha\Captcha;
 
 
 
@@ -18,6 +19,10 @@ use yii\widgets\ActiveForm;
 
         <?= $form->field($model, 'email')->textInput() ?>
 
+        <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+            'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
+        ]) ?>
+
 
 
         <div class="form-group">
@@ -27,5 +32,3 @@ use yii\widgets\ActiveForm;
         <?php ActiveForm::end(); ?>
 
     </div>
-<?php
-//echo Yii::$app->getSecurity()->generateRandomString();

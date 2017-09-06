@@ -21,6 +21,7 @@ use yii\data\SqlDataProvider;
 use app\models\HappyMail;
 use app\models\SadMail;
 use yii\base\DynamicModel;
+use app\models\ChoicesSearch;
 
 class AdminController extends Controller
 {
@@ -103,6 +104,14 @@ class AdminController extends Controller
             'count' => Admin::count(), //tablica ze statami
             'data' => $dataProvider,// tabela z posortowaną ilością chętnych na dany kierunek
         ]);
+       //testowe
+      /*  $searchModel = new ChoicesSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);*/
     }
 
     //widok tablicy chętnych na konkretny kierunek

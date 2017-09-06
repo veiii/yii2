@@ -174,11 +174,6 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
-    public function actionSay($message = 'Hello')
-    {
-        return $this->render('say', ['message' => $message]);
-    }
-
     //przekierowanie na my profile
     public function actionProfile()
     {
@@ -187,8 +182,9 @@ class SiteController extends Controller
 
     public function actionPassword()
     {
-        $model = new DynamicModel(['email']);
-        $model->addRule(['email'], 'required');
+        $model = new DynamicModel(['email','verifyCode']);
+        $model->addRule(['email', 'verifyCode'], 'required');
+        $model->addRule(['verifyCode'], 'captcha');
 
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
@@ -216,13 +212,15 @@ class SiteController extends Controller
 
     public function actionRecover()
     {
-        $model = new DynamicModel(['token', 'newpassword']);
-        $model->addRule(['token', 'newpassword'], 'required');
+        $model = new DynamicModel(['newpassword', 'newpassword2']);
+        $model->addRule(['newpassword','newpassword2'], 'required');
+       //$model->addRule(['newpassword','newpassword2'], 'identical');
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $token = RecoverPasswords::findOne(['token' => $model->token]);
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->newpassword == $model->newpassword2) {
+            $token = RecoverPasswords::findOne(['token' => Yii::$app->request->get('token')]);
             if ($token) {
-                $buser = BUser::findOne(['id' => $token->user_id]);
+                $buser = BUser::findOne(['id' => Yii::$app->request->get('token')]);
                 $buser->password = $model->newpassword;
                 $buser->save(false);
                 $token->delete();
@@ -230,7 +228,7 @@ class SiteController extends Controller
 
             } else {
                 //render
-                $model->token = "Wrong token";
+                $model->newpassword = "Wrong token";
                 return $this->render('recover', ['model' => $model]);
             }
 
