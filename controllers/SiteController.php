@@ -201,7 +201,8 @@ class SiteController extends Controller
                 //mail
                 $mail = new PasswordMail($model->email, $db->token);
                 $mail->send();
-                $this->redirect(['site/index']);
+                Yii::$app->session->setFlash('passwordFormSubmitted');
+                return $this->refresh();
             }
 
 
@@ -214,13 +215,17 @@ class SiteController extends Controller
     {
         $model = new DynamicModel(['newpassword', 'newpassword2']);
         $model->addRule(['newpassword','newpassword2'], 'required');
-       //$model->addRule(['newpassword','newpassword2'], 'identical');
+       /*$model->addRule(['newpassword','newpassword2'], function($model){
+           if($model['newpassword'] != $model['newpassword2']){
+               $model->addError("Passwords not this same.");
+           }
+       });*/
 
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->newpassword == $model->newpassword2) {
             $token = RecoverPasswords::findOne(['token' => Yii::$app->request->get('token')]);
             if ($token) {
-                $buser = BUser::findOne(['id' => Yii::$app->request->get('token')]);
+                $buser = BUser::findOne(['id' => $token->user_id]);
                 $buser->password = $model->newpassword;
                 $buser->save(false);
                 $token->delete();

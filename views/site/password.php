@@ -11,6 +11,13 @@ use yii\captcha\Captcha;
 /* @var $model yii\base\DynamicModel */
 
 ?>
+<?php if (Yii::$app->session->hasFlash('passwordFormSubmitted')): ?>
+
+    <div class="alert alert-success">
+        You will recive next instructions on your mail address.
+    </div>
+
+<?php else: ?>
 
     <div class="form">
 
@@ -25,6 +32,8 @@ use yii\captcha\Captcha;
 
 
 
+
+
         <div class="form-group">
             <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
         </div>
@@ -32,3 +41,4 @@ use yii\captcha\Captcha;
         <?php ActiveForm::end(); ?>
 
     </div>
+<?php endif; ?>

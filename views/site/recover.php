@@ -10,17 +10,12 @@ use yii\widgets\ActiveForm;
 /* @var $model yii\base\DynamicModel */
 
 ?>
-<?php if(@$_GET['token']){
-    $token = $_GET['token'];
-} else {
-    $token='';
-}
-print_r(Yii::$app->request->get('token'));
-?>
+
+
     <div class="form">
 
         <?php $form = ActiveForm::begin(); ?>
-        <?= Html::encode("Write new password");  ?>
+        <?= Html::encode("Write new password and repeat. ");  ?>
 
         <?= $form->field($model, 'newpassword')->passwordInput() ?>
 
