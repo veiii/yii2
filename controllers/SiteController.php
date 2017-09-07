@@ -14,12 +14,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
-use app\models\PersonalDataForm;
-//use app\models\EntryForm;
 use app\models\BUser;
-
-//use app\models\SigninForm;
-//use yii\data\ActiveDataProvider;
 use app\models\PasswordMail;
 
 class SiteController extends Controller

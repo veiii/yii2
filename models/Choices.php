@@ -41,7 +41,10 @@ class Choices extends \yii\db\ActiveRecord
     }
 */
 
-
+    public static function find()
+    {
+        return new \app\models\ChoicesQuery(get_called_class());
+    }
 
     /**
      * @inheritdoc

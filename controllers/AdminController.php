@@ -115,7 +115,7 @@ class AdminController extends Controller
     public function actionView($id)
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Choices::find()->where(['study_id' => $id])->orderBy('points DESC'),
+            'query' => Choices::find()->studyId($id)->orderBy('points DESC'),
         ]);
 
         return $this->render('view', [
@@ -176,7 +176,7 @@ class AdminController extends Controller
 
     public function getNotAcceptedChoices($studyId)
     {
-        $table = Choices::find()->where(['study_id' => $studyId, 'result' => 0])->asArray()->all();
+        $table = Choices::find()->studyId($studyId)->inProgress()->asArray()->all();
         return $table;
     }
 

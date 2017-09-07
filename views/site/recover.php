@@ -16,10 +16,10 @@ use yii\widgets\ActiveForm;
 
         <?php $form = ActiveForm::begin(); ?>
         <?= Html::encode("Write new password and repeat. ");  ?>
+        <br><br>
+        <?= $form->field($model, 'newpassword')->passwordInput()->label('New Password') ?>
 
-        <?= $form->field($model, 'newpassword')->passwordInput() ?>
-
-        <?= $form->field($model, 'newpassword2')->passwordInput() ?>
+        <?= $form->field($model, 'newpassword2')->passwordInput()->label('Repeat New Password') ?>
 
 
 
