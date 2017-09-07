@@ -2,7 +2,7 @@
 namespace app\models;
 
 use Yii;
-use app\models\Score;
+use app\models\Choices;
 
 class Admin
 {

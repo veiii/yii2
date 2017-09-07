@@ -215,17 +215,15 @@ class SiteController extends Controller
     {
         $model = new DynamicModel(['newpassword', 'newpassword2']);
         $model->addRule(['newpassword','newpassword2'], 'required');
-        /*
-         * filtr co by passy sprawdzał czy są takie same i ładny błąd wyrzucał
-         */
-       /*$model->addRule(['newpassword','newpassword2'], function($model){
-           if($model['newpassword'] != $model['newpassword2']){
-               $model->addError("Passwords not this same.");
+
+        $model->addRule(['newpassword','newpassword2'], function ($attribute, $params) use ($model){
+           if($model->newpassword != $model->newpassword2){
+               $model->addError($attribute,"Different Passwords");
            }
-       });*/
+       });
 
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->newpassword == $model->newpassword2) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $token = RecoverPasswords::findOne(['token' => Yii::$app->request->get('token')]);
             if ($token) {
                 $buser = BUser::findOne(['id' => $token->user_id]);
@@ -236,7 +234,7 @@ class SiteController extends Controller
 
             } else {
 
-                $model->newpassword = "Wrong token";
+                $model->addError('newpassword', 'Invalid token');
                 return $this->render('recover', ['model' => $model]);
             }
 

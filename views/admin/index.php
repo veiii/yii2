@@ -13,11 +13,10 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="admin-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
-<?php  Html::encode('Short stats. Applications in progress: '.$count['IN_PROGRESS'].' Applications accepted: '.$count['ACCEPTED'] .' Application rejected: '.$count['REJECTED'] );
-
-
-?>
+<b>
+<?=  Html::encode('Short stats. Applications in progress: '.$count['IN_PROGRESS'].' Applications accepted: '.$count['ACCEPTED'] .' Application rejected: '.$count['REJECTED'] );
+?></b>
+    <br>
     <?= GridView::widget([
         'dataProvider' => $data,
         'filterModel' => true,
@@ -35,9 +34,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             'lp',
-
-
-            //['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

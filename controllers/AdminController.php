@@ -22,7 +22,7 @@ use yii\data\SqlDataProvider;
 use app\models\HappyMail;
 use app\models\SadMail;
 use yii\base\DynamicModel;
-use app\models\ChoicesSearch;
+
 
 class AdminController extends Controller
 {
@@ -56,8 +56,6 @@ class AdminController extends Controller
     public function behaviors()
     {
         return [
-            //test początek
-
             'access' => [
                 'class' => AccessControl::className(),
                 //'only' => ['login', 'logout', 'signup'],
@@ -73,7 +71,6 @@ class AdminController extends Controller
                     ],
                 ],
             ],
-            //test koniec
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -131,13 +128,11 @@ class AdminController extends Controller
         if (($model = Choices::findOne($id)) !== null) {
             return $model;
         } else {
-            //return false;
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
 
 
-    //testowe dwie metody
     public function actionAccept($id)
     {
 
@@ -145,7 +140,7 @@ class AdminController extends Controller
         $this->userId = $model->user_id;
         $model->result = Choices::ACCEPTED;
         $model->save(false);
-        //domyśnie odkomentować jak będą adresy mailowe wszystkie
+        //domyśnie odkomentować jak będą adresy mailowe wszystkie, brak adresów powoduje error przy wysyłaniu maila
         //$this->trigger(self::EVENT_ACCEPTED);
         return $this->redirect(['view', 'id' => $model->study_id]);
     }
@@ -170,7 +165,6 @@ class AdminController extends Controller
 
         if($model->load(Yii::$app->request->post()) && $model->validate())
         {
-            //logika przeniesiona do metod
            $choicesInProgress = $this->getNotAcceptedChoices($model->studyId);
            $this->decideResult($choicesInProgress, $model->howManyPoints);
 
