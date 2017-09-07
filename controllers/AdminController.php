@@ -82,7 +82,7 @@ class AdminController extends Controller
 
     public function actionIndex()
     {
-
+        //brzydko wygląda ale działa, jakoś będzie trzeba to poprawić
         @$studyId = Study::getIdByName(Yii::$app->request->get('study_name'));
         if($studyId){
             $query='SELECT study_id, COUNT(*) AS lp From choices WHERE study_id='.$studyId;
@@ -104,10 +104,9 @@ class AdminController extends Controller
         ]);
 
 
-
         return $this->render('index', [
             'count' => Admin::count(), //tablica ze statami
-            'data' => $dataProvider,// tabela z posortowaną ilością chętnych na dany kierunek
+            'dataProvider' => $dataProvider,// tabela z posortowaną ilością chętnych na dany kierunek
         ]);
     }
 

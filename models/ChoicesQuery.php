@@ -5,9 +5,12 @@ namespace app\models;
 //use Yii;
 //use app\models\Choices;
 
+/**
+ * Class ChoicesQuery
+ * @package app\models
+ */
 class ChoicesQuery extends \yii\db\ActiveQuery
 {
-
 
     public function inProgress()
     {

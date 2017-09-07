@@ -45,8 +45,11 @@ class RecoverPasswords extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getToken()
+    public static function getToken()
     {
         return Yii::$app->getSecurity()->generateRandomString();
     }
+
+
+
 }

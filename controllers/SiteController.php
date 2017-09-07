@@ -188,11 +188,18 @@ class SiteController extends Controller
                 $model->email = "Wrong email";
                 return $this->render('password', ['model' => $model]);
             } else {
-                //do bazy token i dane
-                $db = new RecoverPasswords();
-                $db->user_id = $user->id;
-                $db->token = $db->getToken();
-                $db->save(false);
+                //do bazy token i dane, try/catch sprawdza czy ktoś po raz x nie wprowadza maila i updateuje rekort w bazie
+                try {
+                    $db = new RecoverPasswords();
+                    $db->user_id = $user->id;
+                    $db->token = RecoverPasswords::getToken();
+                    $db->save(false);
+
+                } catch (yii\db\IntegrityException $e) {
+                    $db = RecoverPasswords::find()->where(['user_id'=> $user->id])->one();
+                    $db->token= RecoverPasswords::getToken();
+                    $db->save(false);
+                }
                 //mail
                 $mail = new PasswordMail($model->email, $db->token);
                 $mail->send();
