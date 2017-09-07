@@ -2,9 +2,6 @@
 
 namespace app\controllers;
 
-//use app\models\GreetingMail;
-//use app\models\Profile;
-//use app\models\RegistrationForm;
 use app\models\RecoverPasswords;
 use Yii;
 use yii\base\DynamicModel;
