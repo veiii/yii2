@@ -8,6 +8,7 @@
 
 namespace app\controllers;
 
+use app\models\Study;
 use Yii;
 use yii\web\Controller;
 use app\models\BUser;
@@ -84,8 +85,15 @@ class AdminController extends Controller
 
     public function actionIndex()
     {
+        //$studyId=Yii::$app->request->get('study_name');
+        $studyId = Study::getIdByName(Yii::$app->request->get('study_name'));
+        if($studyId){
+            $query='SELECT study_id, COUNT(*) AS lp From choices WHERE study_id='.$studyId;
+        } else {
+            $query='SELECT study_id, COUNT(*) AS lp From choices GROUP BY study_id ';
+        }
         $dataProvider = new SqlDataProvider([
-            'sql' => 'SELECT study_id, COUNT(*) AS lp From choices GROUP BY study_id ',
+            'sql' => $query,
             //'totalCount' => $count,
             'pagination' => [
                 'pageSize' => 15,
@@ -104,14 +112,6 @@ class AdminController extends Controller
             'count' => Admin::count(), //tablica ze statami
             'data' => $dataProvider,// tabela z posortowaną ilością chętnych na dany kierunek
         ]);
-       //testowe
-      /*  $searchModel = new ChoicesSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);*/
     }
 
     //widok tablicy chętnych na konkretny kierunek

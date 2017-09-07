@@ -24,15 +24,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             [
-                'filter' => Html::input('string', 'study_id'),
+                'filter' => Html::input('string', 'study_name'),
                 'header' => 'Study ID',
                 'attribute' => 'study_id',
                 'format' => 'raw',
-                /*'value'=>function ($model) {
+                'value'=>function ($model) {
                     $name = app\models\Study::getNameById($model['study_id']);
                     return Html::a(Html::encode($name),'index.php?r=admin/view&id='.$model['study_id']);
                     //print_r($model);
-                },*/
+                },
             ],
             'lp',
 

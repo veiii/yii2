@@ -215,6 +215,9 @@ class SiteController extends Controller
     {
         $model = new DynamicModel(['newpassword', 'newpassword2']);
         $model->addRule(['newpassword','newpassword2'], 'required');
+        /*
+         * filtr co by passy sprawdzał czy są takie same i ładny błąd wyrzucał
+         */
        /*$model->addRule(['newpassword','newpassword2'], function($model){
            if($model['newpassword'] != $model['newpassword2']){
                $model->addError("Passwords not this same.");
@@ -232,7 +235,7 @@ class SiteController extends Controller
                 $this->redirect(['site/login']);
 
             } else {
-                //render
+
                 $model->newpassword = "Wrong token";
                 return $this->render('recover', ['model' => $model]);
             }

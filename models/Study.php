@@ -48,4 +48,10 @@ class Study extends \yii\db\ActiveRecord
         $model = self::findOne(['id' => $id] );
         return $model->name;
     }
+
+    public static function getIdByName($name)
+    {
+        $model = self::findOne(['name' => $name ] );
+        return $model->id;
+    }
 }
