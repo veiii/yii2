@@ -168,7 +168,7 @@ class ProfileController extends Controller
 
         $modelProfile = $this->findModel(Yii::$app->user->id);
         $modelScore = Score::findOne(Yii::$app->user->id);
-        $query = Choices::find()->where(['user_id' => Yii::$app->user->id]);
+        $query = Choices::find()->byUserId(Yii::$app->user->id);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);

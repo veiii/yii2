@@ -19,28 +19,10 @@ class Choices extends \yii\db\ActiveRecord
     const IN_PROGRESS = 0;
     const ACCEPTED = 1;
     const REJECTED = 2;
-   /* const EVENT_ACCEPTED ='accepted';
-    const EVENT_REJECTED ='rejected';
 
-    public function init()
-    {
-        $this->on(self::EVENT_ACCEPTED, [$this, 'happyMail'], $data);
-        $this->on(self::EVENT_REJECTED, [$this, 'sadMail']);
-    }
-
-    public function happyMail($event)
-    {
-        $mail = new HappyMail($event->data);
-        $mail->send();
-    }
-
-    public function sadMail($event)
-    {
-        $mail = new SadMail($event->data);
-        $mail->send();
-    }
-*/
-
+    /**
+     * added activeRecords in class ChoicesQuery
+     */
     public static function find()
     {
         return new \app\models\ChoicesQuery(get_called_class());

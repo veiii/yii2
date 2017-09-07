@@ -2,8 +2,8 @@
 
 namespace app\models;
 
-use Yii;
-use app\models\Choices;
+//use Yii;
+//use app\models\Choices;
 
 class ChoicesQuery extends \yii\db\ActiveQuery
 {
@@ -29,6 +29,10 @@ class ChoicesQuery extends \yii\db\ActiveQuery
         return $this->andWhere(['study_id'=> $id]);
     }
 
+    public function byUserId($id=0)
+    {
+        return $this->andWhere(['user_id'=> $id]);
+    }
 
 
 }
