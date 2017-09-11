@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\web\IdentityInterface;
+use \yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "b_user".
@@ -19,7 +20,7 @@ use yii\web\IdentityInterface;
  */
 
 
-class BUser extends \yii\db\ActiveRecord implements IdentityInterface
+class BUser extends ActiveRecord implements IdentityInterface
 {
     const ROLE_USER = 0;
     const ROLE_ADMIN = 1;
