@@ -5,8 +5,11 @@
 
 class_name: UnitTester
 modules:
-    enabled:
-      - Asserts
-      - Db
-      - Yii2:
-            part: [orm, email]
+        config:
+        Db:
+            dsn: 'mysql:host=localhost;dbname=yii2_basic_tests'
+            user: 'root'
+            password: 'root'
+            populate: false
+            cleanup: false
+            reconnect: true

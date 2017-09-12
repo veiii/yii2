@@ -167,4 +167,5 @@ class BUser extends ActiveRecord implements IdentityInterface
         return self::findOne(['mail' => $email]);
 
     }
+
 }

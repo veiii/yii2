@@ -39,10 +39,13 @@ class LoginFormTest extends \Codeception\Test\Unit
 
     public function testLoginCorrect()
     {
-        $this->model = new LoginForm([
-            'username' => 'demo',
-            'password' => 'demo',
-        ]);
+        /*$this->model = new LoginForm([
+            'username' => 'admin',
+            'password' => 'admin',
+        ]);*/
+        $this->model = new LoginForm('admin', 'admin');
+        //$this->model->username='admin';
+        //$this->model->password='admin';
 
         expect_that($this->model->login());
         expect_not(\Yii::$app->user->isGuest);

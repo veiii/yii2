@@ -8,14 +8,14 @@ class LoginFormCest
 
     public function openLoginPage(\FunctionalTester $I)
     {
-        $I->see('Login', 'h1');
+        $I->see('Login');
 
     }
 
     // demonstrates `amLoggedInAs` method
     public function internalLoginById(\FunctionalTester $I)
     {
-        $I->amLoggedInAs(100);
+        $I->amLoggedInAs(1);
         $I->amOnPage('/');
         $I->see('Logout (admin)');
     }
@@ -23,8 +23,8 @@ class LoginFormCest
     // demonstrates `amLoggedInAs` method
     public function internalLoginByInstance(\FunctionalTester $I)
     {
-        $I->amLoggedInAs(\app\models\User::findByUsername('admin'));
-        $I->amOnPage('/');
+        $I->amLoggedInAs(\app\models\BUser::findByUsername('admin'));
+        $I->amOnPage('site/index');
         $I->see('Logout (admin)');
     }
 
