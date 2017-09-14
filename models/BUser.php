@@ -57,7 +57,7 @@ class BUser extends ActiveRecord implements IdentityInterface
             [['lastName'], 'string', 'max' => 20],
             [['username', 'password'], 'string', 'max' => 30],
             [['username'], 'unique'],
-            [['mail'], 'string', 'max' =>45],
+            [['mail'], 'email'],
         ];
     }
 
