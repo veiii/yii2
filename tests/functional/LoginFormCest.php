@@ -13,6 +13,7 @@ class LoginFormCest
     }
 
     // demonstrates `amLoggedInAs` method
+    /*
     public function internalLoginById(\FunctionalTester $I)
     {
         $I->amLoggedInAs(1);
@@ -27,7 +28,7 @@ class LoginFormCest
         $I->amOnPage('site/index');
         $I->see('Logout (admin)');
     }
-
+    */
     public function loginWithEmptyCredentials(\FunctionalTester $I)
     {
         $I->submitForm('#login-form', []);
@@ -49,10 +50,13 @@ class LoginFormCest
     public function loginSuccessfully(\FunctionalTester $I)
     {
         $I->submitForm('#login-form', [
-            'LoginForm[username]' => 'admin',
-            'LoginForm[password]' => 'admin',
+            'LoginForm[username]' => 'k',
+            'LoginForm[password]' => 'k',
         ]);
-        $I->see('Logout (admin)');
-        $I->dontSeeElement('form#login-form');              
+        $I->see('Logout (k)');
+        $I->dontSeeElement('form#login-form');
+        //$I->amOnRoute('profile/main');
+        //$I->see('My Profile');
+
     }
 }

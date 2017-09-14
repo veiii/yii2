@@ -8,3 +8,7 @@ modules:
             part: orm
             entryScript: index-test.php
             cleanup: false
+modules:
+    enabled:
+      - Filesystem
+      - Yii2

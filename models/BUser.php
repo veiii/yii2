@@ -87,7 +87,7 @@ class BUser extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return static::findOne($id);
+        return self::findOne($id);
     }
 
     /**
@@ -168,4 +168,8 @@ class BUser extends ActiveRecord implements IdentityInterface
 
     }
 
+    public static function findUserById($id)
+    {
+        return self::findOne(['id' => $id]);
+    }
 }

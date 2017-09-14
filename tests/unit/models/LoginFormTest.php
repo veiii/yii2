@@ -11,7 +11,7 @@ class LoginFormTest extends \Codeception\Test\Unit
 
     protected function _after()
     {
-        \Yii::$app->user->logout();
+        //\Yii::$app->user->logout();
     }
 
     public function testLoginNoUser()
@@ -43,9 +43,9 @@ class LoginFormTest extends \Codeception\Test\Unit
             'username' => 'admin',
             'password' => 'admin',
         ]);*/
-        $this->model = new LoginForm('admin', 'admin');
-        //$this->model->username='admin';
-        //$this->model->password='admin';
+        $this->model = new LoginForm();
+        $this->model->username='admin';
+        $this->model->password='admin';
 
         expect_that($this->model->login());
         expect_not(\Yii::$app->user->isGuest);

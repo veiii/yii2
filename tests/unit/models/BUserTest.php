@@ -7,24 +7,20 @@ class BUserTest extends Unit
 {
     public function testFindUserById()
     {
-        //$user = BUser::findIdentity(1);
-        expect_that($user = BUser::findIdentity(1));
+        expect_that($user = BUser::findUserById(1));
         expect($user->username)->equals('admin');
-
-        expect_not(BUser::findIdentity(0));
+        expect_not(BUser::findUserById(0));
     }
 
 
     public function testFindByUsername()
     {
         expect_that($user = BUser::findByUsername("admin"));
-        expect_not($user = BUser::findByUsername('not-admin'));
+        expect($user->id='1');
+        expect_not($user->id='0');
     }
 
-    /**
-     * @depends testFindUserByUsername
-     */
-    //działa
+
     public function testValidateUser()
     {
         expect($user = BUser::findByUsername('admin'));
