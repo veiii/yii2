@@ -2,16 +2,16 @@
 
 namespace tests\models;
 
+use \Codeception\Test\Unit;
 use app\models\LoginForm;
-use Codeception\Specify;
 
-class LoginFormTest extends \Codeception\Test\Unit
+class LoginFormTest extends Unit
 {
     private $model;
 
     protected function _after()
     {
-        //\Yii::$app->user->logout();
+        \Yii::$app->user->logout();
     }
 
     public function testLoginNoUser()
