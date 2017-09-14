@@ -3,7 +3,7 @@ class ContactFormCest
 {
     public function _before(\FunctionalTester $I)
     {
-        $I->amOnPage(['site/contact']);
+        $I->amOnRoute('site/contact');
     }
 
     public function openContactPage(\FunctionalTester $I)
@@ -49,7 +49,7 @@ class ContactFormCest
             'ContactForm[body]' => 'test content',
             'ContactForm[verifyCode]' => 'testme',
         ]);
-        //$I->seeEmailIsSent();
+        $I->seeEmailIsSent();
         $I->dontSee('Subject');
         $I->see('Thank you for contacting us. We will respond to you as soon as possible.');
     }

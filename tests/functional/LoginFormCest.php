@@ -49,14 +49,12 @@ class LoginFormCest
 
     public function loginSuccessfully(\FunctionalTester $I)
     {
-        $I->submitForm('#login-form', [
-            'LoginForm[username]' => 'k',
-            'LoginForm[password]' => 'k',
-        ]);
-        $I->see('Logout (k)');
-        $I->dontSeeElement('form#login-form');
-        //$I->amOnRoute('profile/main');
-        //$I->see('My Profile');
+
+        $I->fillField('username', 'admin');
+        $I->fillField('password', 'admin');
+        $I->click('Login');
+        $I->amOnPage('profile/main');
+        $I->see('My Profile');
 
     }
 }
