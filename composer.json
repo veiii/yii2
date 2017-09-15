@@ -27,7 +27,8 @@
         "yiisoft/yii2-faker": "~2.0.0",
         "codeception/codeception": "^2.3",
         "codeception/verify": "*",
-        "codeception/specify": "*"
+        "codeception/specify": "*",
+        "kartik-v/yii2-mpdf": "*"
     },
     "config": {
         "process-timeout": 1800,
