@@ -26,7 +26,6 @@ class RegistrationCest
         $I->see('Last Name cannot be blank');
         $I->see('Username cannot be blank');
         $I->see('Password cannot be blank');
-        //$I->see('Mail is not a valid email address.');
     }
 
     public function submitFormWithIncorrectEmail(\FunctionalTester $I)
