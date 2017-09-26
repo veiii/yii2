@@ -13,6 +13,8 @@ use app\models\Score;
 use app\models\Choices;
 use yii\data\ActiveDataProvider;
 use app\models\BUser;
+use app\models\UploadForm;
+use yii\web\UploadedFile;
 
 /**
  * ProfileController implements the CRUD actions for Profile model.
@@ -33,7 +35,7 @@ class ProfileController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'view', 'update','accept','reject', 'many'],
+                        'actions' => ['index', 'view', 'update','accept','reject', 'many', 'upload'],
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
                             return BUser::isUserAdmin(Yii::$app->user->id);
@@ -191,6 +193,20 @@ class ProfileController extends Controller
         } else {
             return $this->redirect(['create']);
         }
+    }
+    public function actionUpload()
+    {
+        $model = new UploadForm();
+
+        if (Yii::$app->request->isPost) {
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            if ($model->upload()) {
+                // file is uploaded successfully
+                return true;
+            }
+        }
+
+        return $this->render('upload', ['model' => $model]);
     }
 
 

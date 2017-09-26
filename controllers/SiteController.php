@@ -241,7 +241,7 @@ class SiteController extends Controller
         } else {
             return $this->render('recover', ['model' => $model]);
         }
-
+        return true;
 
     }
 }
