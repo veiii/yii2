@@ -1,12 +1,33 @@
-<html>
+<?php
 
+use yii\helpers\Html;
+use yii\grid\GridView;
 
-<body>
+/* @var $this yii\web\View */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+?>
+<div>
+<h2>Lista osób przyjętych na kierunku <?php echo $studyName ?></h2>
 
-<h1>testwy</h1>
-<b>pdf</b>
-just for test
-
-</body>
-
-</html>
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'summary'=>'',
+        'columns' => [
+            [
+                    'header' => '',
+                    'class' => 'yii\grid\SerialColumn',
+                'headerOptions' => ['width' => '30'],
+            ],
+            [
+                'header' => 'Name',
+                'attribute' => 'user_id',
+                'value' => function ($model) {
+                    return \app\models\BUser::getNameById($model->user_id);
+                },
+                'contentOptions' => ['style' => 'max-width:100px;'],
+                //'headerOptions' => ['width' => '150'],
+                //'filter' => SORT_DESC,
+            ],
+        ],
+    ]); ?>
+</div>

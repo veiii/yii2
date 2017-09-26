@@ -172,4 +172,10 @@ class BUser extends ActiveRecord implements IdentityInterface
     {
         return self::findOne(['id' => $id]);
     }
+
+    public static function getNameById($id)
+    {
+        $model = self::findUserById($id);
+        return $model->lastName.' '.$model->firstName;
+    }
 }
