@@ -18,6 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?= Html::a('Accept/Reject many students', ['/admin/many'], ['class'=>'btn btn-primary']) ?>
+    <?= Html::a('Export to pdf', 'index.php?r=report/report&studyId='.$_GET['id'], ['class'=>'btn btn-primary']) ?>
 
     <?php Pjax::begin() ?>
     <?=

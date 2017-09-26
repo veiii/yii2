@@ -25,6 +25,7 @@ class ReportController extends Controller
             'query' => $query,
         ]);
         $pdf = Yii::$app->pdf;
+        $pdf->filename= date("Y-m-d").'_'.Study::getNameById($id);
         $pdf->content = $this->renderPartial('_reportView', [
             'dataProvider' => $dataProvider,
             'studyName' => Study::getNameById($id),
