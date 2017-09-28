@@ -10,5 +10,5 @@ use yii\helpers\Html;
     <button>Submit</button>
 
 <?php ActiveForm::end() ?>
-<?php echo time(); ?>
-<?php echo Html::img('uploads/ttt.png') ?>
+
+

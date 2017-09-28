@@ -43,4 +43,25 @@ class UserPhoto extends \yii\db\ActiveRecord
             'path' => Yii::t('app', 'Path'),
         ];
     }
+
+    public static function isPhoto($id)
+    {
+        $model = self::findOne(['user_id' => $id]);
+        if ($model){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function findPhotoByUserId($id)
+    {
+        return self::findOne(['user_id' => $id]);
+    }
+
+    public static function deleteFileByUserId($id)
+    {
+
+
+    }
 }

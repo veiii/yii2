@@ -25,10 +25,24 @@ class UploadForm extends Model
         if ($this->validate()) {
             $path = 'uploads/' .time().Yii::$app->security->generateRandomString(7).'.' . $this->imageFile->extension;
             $this->imageFile->saveAs($path);
-                $model = new UserPhoto();
-                $model->path = $path;
-                $model->user_id = Yii::$app->user->id;
-                $model->save(false);
+            $userId =Yii::$app->user->id;
+                if(UserPhoto::isPhoto($userId)){
+                    $model = new UserPhoto();
+                    $model->findPhotoByUserId($userId);
+                    /**
+                     * Permission denied for unlink???
+                     */
+                    //unlink(Yii::$app->basePath.'/web/'. $model->path);
+                    $model->path = $path;
+                    $model->update();
+
+                } else {
+                    $model = new UserPhoto();
+                    $model->path = $path;
+                    $model->user_id = Yii::$app->user->id;
+                    $model->save(false);
+                }
+
             return true;
         } else {
             return false;

@@ -202,7 +202,7 @@ class ProfileController extends Controller
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
             if ($model->upload()) {
                 // file is uploaded successfully
-                return true;
+                $this->redirect(['main']);
             }
         }
 

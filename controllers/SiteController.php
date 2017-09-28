@@ -227,7 +227,7 @@ class SiteController extends Controller
             if ($token) {
                 $buser = BUser::findOne(['id' => $token->user_id]);
                 $buser->password = $model->newpassword;
-                $buser->save(false);
+                $buser ->save(false);
                 $token->delete();
                 $this->redirect(['site/login']);
 
