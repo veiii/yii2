@@ -66,3 +66,28 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php endif; ?>
 </div>
+
+<?php
+ echo yii2mod\google\maps\markers\GoogleMaps::widget([
+    'userLocations' =>
+    [
+        [
+            'location' => [
+                'address' => 'Lublin, ul.Narutowicza',
+                'country' => 'Poland',
+            ],
+            'htmlContent' => '<h1>Lublin</h1>',
+        ],
+    ],
+        'googleMapsUrlOptions' => [
+        'key' => 'AIzaSyA2kGn-pUwYTv9OKKdkBwwQQNp3YO7uFwI',
+        'language' => 'pl',
+        'version' => '3.1.18',
+    ],
+        'googleMapsOptions' => [
+        'mapTypeId' => 'roadmap',
+        'tilt' => 45,
+        'zoom' => 4,
+    ],
+]);
+?>
