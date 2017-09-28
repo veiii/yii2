@@ -20,11 +20,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => true,
+        'tableOption' => ['style' => 'width:500px'],
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'yii\grid\SerialColumn',
+                //'headerOptions' => ['style' => 'width:100px;']
+            ],
             [
                 'filter' => Html::input('string', 'study_name'),
                 'header' => 'Study ID',
+                //'headerOptions' => ['style' => 'max-width:100px;'],
                 'attribute' => 'study_id',
                 'format' => 'raw',
                 'value'=>function ($model) {
@@ -33,7 +37,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     //print_r($model);
                 },
             ],
-            'lp',
+            [
+                'attribute' =>'lp',
+                'header' => 'count',
+                //'contentOptions' => ['style' => 'width:100px;']
+            ],
+            //'contentOptions' => ['style' => 'width:100px;']
         ],
     ]); ?>
 
