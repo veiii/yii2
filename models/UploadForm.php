@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\web\UploadedFile;
+use yii\imagine\Image;
 
 class UploadForm extends Model
 {
@@ -25,10 +26,10 @@ class UploadForm extends Model
         if ($this->validate()) {
             $path = 'uploads/' .time().Yii::$app->security->generateRandomString(7).'.' . $this->imageFile->extension;
             $this->imageFile->saveAs($path);
+            Image::thumbnail($path, 400,200)->save();
             $userId =Yii::$app->user->id;
                 if(UserPhoto::isPhoto($userId)){
-                    $model = new UserPhoto();
-                    $model->findPhotoByUserId($userId);
+                    $model = UserPhoto::findPhotoByUserId($userId);
                     /**
                      * Permission denied for unlink???
                      */

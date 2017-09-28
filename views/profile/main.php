@@ -4,7 +4,6 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\grid\GridView;
 use yii\widgets\ActiveForm;
-use app\models\Choices;
 
 /* @var $this yii\web\View */
 /* @var $modelProfile app\models\Profile */
@@ -107,4 +106,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php ActiveForm::end(); ?>
 
+</div>
+<div class="user-photo">
+<?php
+    $photoPath = @\app\models\UserPhoto::findPathByUserId(Yii::$app->user->id);
+    if($photoPath){
+        echo Html::img(@\app\models\UserPhoto::findPathByUserId(Yii::$app->user->id));
+    } else {
+        echo Html::a('Add photo here', ['profile/upload']);
+    }
+?>
 </div>

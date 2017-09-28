@@ -54,9 +54,15 @@ class UserPhoto extends \yii\db\ActiveRecord
         }
     }
 
-    public function findPhotoByUserId($id)
+    public static function findPhotoByUserId($id)
     {
         return self::findOne(['user_id' => $id]);
+    }
+
+    public static function findPathByUserId($id)
+    {
+        $model = self::findOne(['user_id' => $id]);
+        return $model->path;
     }
 
     public static function deleteFileByUserId($id)
