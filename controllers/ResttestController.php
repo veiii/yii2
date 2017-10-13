@@ -59,4 +59,10 @@ class ResttestController extends ActiveController
     {
 
     }
+/**
+ * takie coś nie działa wyrzuca całą zawartoś w xmlu
+ */
+    /*public function actionResttest(){
+        return $this->render('resttest');
+    }*/
 }
