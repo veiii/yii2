@@ -75,10 +75,13 @@ $config = [
             'showScriptName' => false,
             'enableStrictParsing' => true,
             // "ładne" linki z jakiegoś powodu dają error 404
-            //'enablePrettyUrl' => true,
+            'enablePrettyUrl' => true,
             'rules' => [
-                ['class'=>'yii\rest\UrlRule', 'controller'=>'resttest']
-                ],
+                    //['class'=>'yii\rest\UrlRule', 'controller'=>'resttest'],
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:\w+>/<id:\d+>' => '<controller>/<view>',
+            ],
         ],
     ],
     'params' => $params,
