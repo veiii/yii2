@@ -82,7 +82,6 @@ class AdminController extends Controller
 
     public function actionIndex()
     {
-        //brzydko wygląda ale działa, jakoś będzie trzeba to poprawić
         @$studyId = Study::getIdByName(Yii::$app->request->get('study_name'));
         if($studyId){
             $query='SELECT study_id, COUNT(*) AS lp From choices WHERE study_id='.$studyId;

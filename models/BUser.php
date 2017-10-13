@@ -37,6 +37,22 @@ class BUser extends ActiveRecord implements IdentityInterface
         $mail->send();
 
     }
+
+    /**
+     * @param bool $insert
+     * @return bool
+     * testowe do autoryzacji resttesta
+     */
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if ($this->isNewRecord) {
+                $this->access_token = Yii::$app->getSecurity()->generateRandomString();
+            }
+            return true;
+        }
+        return false;
+    }
     /**
      * @inheritdoc
      */
@@ -101,7 +117,8 @@ class BUser extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        throw new NotSupportedException();
+        return static::findOne(['access_token' => $token]);
+        //throw new NotSupportedException();
     }
 
     /**

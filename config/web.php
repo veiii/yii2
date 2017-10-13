@@ -8,8 +8,14 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
-        'request' => [
+        /*'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
+            'cookieValidationKey' => 'oenwDchX-ViKnq-Z0RzS2dl7CwdpTAPa',
+        ],*/
+        'request' => [
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ],
             'cookieValidationKey' => 'oenwDchX-ViKnq-Z0RzS2dl7CwdpTAPa',
         ],
         'cache' => [
@@ -63,6 +69,17 @@ $config = [
             ],
         ],
         */
+        'urlManager' => [
+            'class' => 'yii\web\UrlManager',
+            // Disable index.php
+            'showScriptName' => false,
+            'enableStrictParsing' => true,
+            // "ładne" linki z jakiegoś powodu dają error 404
+            //'enablePrettyUrl' => true,
+            'rules' => [
+                ['class'=>'yii\rest\UrlRule', 'controller'=>'resttest']
+                ],
+        ],
     ],
     'params' => $params,
 ];

@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use yii\widgets\DetailView;
+
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -20,7 +20,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => true,
-        'tableOption' => ['style' => 'width:500px'],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn',
                 //'headerOptions' => ['style' => 'width:100px;']
